@@ -15,7 +15,9 @@
   "devDependencies": {
     "concurrently": "^5.1.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apollo-server-express": "^2.25.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/richardyjkim/book-seach-engine.git"
