@@ -6,11 +6,12 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user.id })
-          .select('-__v -password')
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password');
 
-        return userData
+        return userData;
       }
+
       throw new AuthenticationError('Not logged in!')
     }
   },
@@ -29,11 +30,18 @@ const resolvers = {
         throw new AuthenticationError('Invalid credentials')
       }
 
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password')
+      }
+
       const token = signToken(user);
       return { token, user };
     },
+
     saveBook: async (parent, { input }, { user }) => {
-      if (!user) {
+      if (user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: user._id },
           { $addToSet: { savedBooks: input } },
@@ -42,10 +50,10 @@ const resolvers = {
 
         return updatedUser;
       }
-      throw new AuthenticationError
+      throw new AuthenticationError('Please log in')
     },
     removeBook: async (parent, { bookId }, { user }) => {
-      if (!user) {
+      if (user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: user._id },
           { $pull: { savedBooks: { bookId: bookId } } },
@@ -54,7 +62,7 @@ const resolvers = {
 
         return updatedUser;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('Please log in');
     }
   }
 };
