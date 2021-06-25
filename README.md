@@ -1,199 +1,93 @@
-# 21 MERN: Book Search Engine
+### 21. MERN Challenge: Book Search Engine
 
-Your Challenge this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
+## Description 
 
-This week, you’ll take a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API. It's already set up to allow users to save book searches to the back end. 
-
-To fulfill the Challenge, you’ll need to do the following:
-
-1. Set up an Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
-
-2. Modify the existing authentication middleware so that it works in the context of a GraphQL API.
-
-3. Use Apollo Client to create an Apollo Provider so that requests can communicate with an Apollo Server.
-
-4. Deploy the application to Heroku using a MongoDB database hosted at MongoDB Atlas.
-
-Before you start, [clone the starter code](https://github.com/coding-boot-camp/solid-broccoli).
-
-## User Story
-
-```md
 AS AN avid reader
-I WANT to search for new books to read
-SO THAT I can keep a list of books to purchase
-```
+YOU WANT to search for new books to read
+SO THAT YOU can keep a list of books to purchase
 
-## Acceptance Criteria
 
-```md
-GIVEN a book search engine
-WHEN I load the search engine
-THEN I am presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button
-WHEN I click on the Search for Books menu option
-THEN I am presented with an input field to search for books and a submit button
-WHEN I am not logged in and enter a search term in the input field and click the submit button
-THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site
-WHEN I click on the Login/Signup menu option
-THEN a modal appears on the screen with a toggle between the option to log in or sign up
-WHEN the toggle is set to Signup
-THEN I am presented with three inputs for a username, an email address, and a password, and a signup button
-WHEN the toggle is set to Login
-THEN I am presented with two inputs for an email address and a password and login button
-WHEN I enter a valid email address and create a password and click on the signup button
-THEN my user account is created and I am logged in to the site
-WHEN I enter my account’s email address and password and click on the login button
-THEN I the modal closes and I am logged in to the site
-WHEN I am logged in to the site
-THEN the menu options change to Search for Books, an option to see my saved books, and Logout
-WHEN I am logged in and enter a search term in the input field and click the submit button
-THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site and a button to save a book to my account
-WHEN I click on the Save button on a book
-THEN that book’s information is saved to my account
-WHEN I click on the option to see my saved books
-THEN I am presented with all of the books I have saved to my account, each featuring the book’s title, author, description, image, and a link to that book on the Google Books site and a button to remove a book from my account
-WHEN I click on the Remove button on a book
-THEN that book is deleted from my saved books list
-WHEN I click on the Logout button
-THEN I am logged out of the site and presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button  
-```
+## Table of Contents (Optional)
 
 
-## Mock-Up
+* [Installation](#installation)
+* [Usage](#usage)
+* [Technology](#technology)
+* [Credits](#credits)
+* [License](#license)
 
-Let's start by revisiting the web application's appearance and functionality.
 
-As you can see in the following animation, a user can type a search term (in this case, "star wars") in a search box and the results appear:
+## Installation
 
-![Animation shows "star wars" typed into a search box and books about Star Wars appearing as results.](./Assets/21-mern-homework-demo-01.gif)
+- Please visit Website http://nameless-mesa-79274.herokuapp.com/
 
-The user can save books by clicking "Save This Book!" under each search result, as shown in the following animation:
+# Usage 
 
-![Animation shows user clicking "Save This Book!" button to save books that appear in search results. The button label changes to "Book Already Saved" after it is clicked and the book is saved.](./Assets/21-mern-homework-demo-02.gif)
 
-A user can view their saved books on a separate page, as shown in the following animation:
+![alt text](./screenshots/ss1.png)
 
-![The Viewing Lernantino's Books page shows the books that the user Lernaninto has saved.](./Assets/21-mern-homework-demo-03.gif)
+- Welcome to Book Search Engine
 
+![alt text](./screenshots/ss2.png)
 
-## Getting Started
+- Please Log in, Otherwise you would not be save your searches
 
-In order for this application to use a GraphQL API, you’ll need to refactor the API to use GraphQL on the back end and add some functionality to the front end. The following sections contain details about the files you’ll need to modify on the back end and the front end.
+![alt text](./screenshots/ss3.png)
 
-> **Important:** Make sure to study the application before building upon it. Better yet, start by making a copy of it. It's already a working application&mdash;you're converting it from RESTful API practices to a GraphQL API.
+- Not a member? Sign Up now!
 
-### Back-End Specifications
+![alt text](./screenshots/ss4.png)
 
-You’ll need to complete the following tasks in each of these back-end files:
+- search your books and save it for your own
 
-* `server.js`: Implement the Apollo Server and apply it to the Express server as middleware.
+![alt text](./screenshots/ss5.png)
 
-* `auth.js`: Update the auth middleware function to work with the GraphQL API.
+- Go to saved book tab to see you saved books
 
-	> **Hint:** Refer to the module project as a refresher on how to do this.
+![alt text](./screenshots/ss6.png)
 
-* `Schemas` directory:
+- Already got the book? Or no need anymore? You can always delete that
 
-	* `index.js`: Export your typeDefs and resolvers.
 
-	* `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models.
 
-		> **Hint:** Use the functionality in the `user-controller.js` as a guide.
 
-	* `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
+## Technology
+    - Express
+    - Npm
+    - Java Script
+    - nodejs
+    - react
+    - Grapghql
+    - Apollo
+   
 
-		* `Query` type:
+## Credits
 
-			* `me`: Which returns a `User` type.
-		
-		* `Mutation` type:
+ - Richard Kim: richardyjkim (github)
 
-			* `login`: Accepts an email and password as parameters; returns an `Auth` type.
 
-			* `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
+## License
 
-			* `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
+MIT License
 
-			* `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
-			
-		* `User` type:
+Copyright (c) [2021] [Richard Y Kim]
 
-			* `_id`
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-			* `username`
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-			* `email`
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-			* `bookCount`
-
-			* `savedBooks` (This will be an array of the `Book` type.)
-
-		* `Book` type:
-
-			* `bookId` (Not the `_id`, but the book's `id` value returned from Google's Book API.)
-
-			* `authors` (An array of strings, as there may be more than one author.)
-
-			* `description`
-
-			* `title`
-
-			* `image`
-
-			* `link`
-
-		* `Auth` type:
-
-			* `token`
-
-			* `user` (References the `User` type.)
-
-
-### Front-End Specifications
-
-You'll need to create the following front-end files:
-
-* `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
-
-* `mutations.js`:
-
-	* `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
-
-	* `ADD_USER` will execute the `addUser` mutation.
-
-	* `SAVE_BOOK` will execute the `saveBook` mutation.
-
-	* `REMOVE_BOOK` will execute the `removeBook` mutation.
-
-Additionally, you’ll need to complete the following tasks in each of these front-end files:
-
-* `App.js`: Using `ApolloClient`, `InMemoryCache`, `createHttpLink`, and `setContext` from the Apollo Client library, create an Apollo Provider to make every request work with the Apollo server.
-	
-* `SearchBooks.js`:
-
-	* Use the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file. Define and export the `SAVE_BOOK` mutation in a new file at `/client/src/utils/mutations.js`.
-
-	* Make sure you keep the logic for saving the book's ID to state in the `try...catch` block! 
-
-* `SavedBooks.js`:
-
-	* Remove the `useEffect()` Hook that sets the state for `UserData`.
-
-	* Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`. Define and export the `GET_ME` query in a new file at `/client/src/utils/queries.js`.
-
-	* Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. Define and export the `REMOVE_BOOK` mutation in a new file at `/client/src/utils/mutations.js`. (Make sure you keep the `removeBookId()` function in place!)
-
-* `SignupForm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality. Define and export the `ADD_USER` mutation in a new file at `/client/src/utils/mutations.js`.
-
-* `LoginForm.js`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality. Define and export the `LOGIN_USER` mutation in a new file at `/client/src/utils/mutations.js`.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application on Heroku.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
