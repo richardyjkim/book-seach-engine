@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -44,7 +44,7 @@ const LoginForm = () => {
         throw new Error('something went wrong!');
       }
 
-      console.log(data);
+      console.log(data.user);
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);

@@ -11,21 +11,13 @@ const resolvers = {
 
         return userData;
       }
-
       throw new AuthenticationError('Not logged in!')
     }
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return { token, user };
-    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('Invalid credentials')
       }
@@ -40,7 +32,15 @@ const resolvers = {
       return { token, user };
     },
 
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
     saveBook: async (parent, { input }, { user }) => {
+      console.log(input)
       if (user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: user._id },
@@ -52,6 +52,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Please log in')
     },
+
     removeBook: async (parent, { bookId }, { user }) => {
       if (user) {
         const updatedUser = await User.findOneAndUpdate(
